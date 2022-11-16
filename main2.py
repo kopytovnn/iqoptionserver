@@ -9,14 +9,13 @@ iqoption_engine = IqOptionClass()
 
 @app.route('/<goal>/<interval>')
 def hello_world(goal, interval):
-    # print(4)
+    print(4)
     return iqoption_engine.get_candles(goal, interval)
 
 
 @app.route('/signin/<login>/<password>')
 def sign_in(login, password):
-    s = iqoption_engine.connect(login, password)
-    return s
+    return iqoption_engine.connect(login, password)
 
 
 @app.route('/getTickers/<goal>/<candle_count>/<interval>/<params>/<code>')
@@ -25,9 +24,9 @@ def with_params(goal, candle_count, interval, params, code):
     params2 = {}
     for i in params:
         v = i.split(':')
-        # print('with_params', v)
+        print('with_params', v)
         params2[v[0]] = v[1]
-    # print(f'-->{goal}<--', code, iqoption_engine.get_candles(goal, candle_count, interval, params2))
+    print(f'-->{goal}<--', code, iqoption_engine.get_candles(goal, candle_count, interval, params2))
     return iqoption_engine.get_candles(goal, candle_count, interval, params2) + '*' + code
 
 
@@ -35,19 +34,13 @@ def with_params(goal, candle_count, interval, params, code):
 def send_tickers(goal, candle_count, interval, params, code):pass
 
 
-@app.route('/balance/')
-def get_balance():
-    # print(iqoption_engine.get_balance())
-    return str(iqoption_engine.get_balance())
-
-
 @app.route('/buy/<count>')
 def buy(count):
     a = iqoption_engine.buy(int(count))
     if a:
         return "True"
-    return get_balance()
+    return "False"
 
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(port=5001)

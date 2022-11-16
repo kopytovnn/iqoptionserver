@@ -8,12 +8,24 @@ from psar import psar
 
 class IqOptionClass:
     def __init__(self):
-        self.account = IQOption("aalex12345sky@gmail.com", "Voda12345")
-        self.account.connect()  #connect to iqoption
+        pass
+        # self.account = IQOption("aalex12345sky@gmail.com", "Voda12345")
+        # self.account.connect()  #connect to iqoption
 
-    def get_candles(self, goal='EURUSD', interval='60', params={'psarStep': '0.02', 'psarMaxStep': '0.2'}):
-        # print(123)
-        d = self.account.get_candles(goal, int(interval), 30, time.time())
+    def connect(self, mail, password):
+        try:
+            self.account = IQOption(mail, password)
+            self.account.connect()  #connect to iqoption
+            print("Login True")
+            return "True"
+        except Exception:
+            return "False"
+
+    def get_balance(self):
+        return self.account.get_balance()
+
+    def get_candles(self, goal='EURUSD', candle_count=30, interval='60', params={'psarStep': '0.02', 'psarMaxStep': '0.2'}):
+        d = self.account.get_candles(goal, int(interval), int(candle_count), time.time())
         main_list = []
         string = ''
         for i in d:
@@ -24,3 +36,7 @@ class IqOptionClass:
                               'low': i['min']})
         psar_values = psar(d, step=float(params['psarStep']), maxStep=float(params['psarMaxStep']))
         return string + psar_values
+
+    def buy(self, count, activities="EURUSD", action="call", expiration_mode=1):
+        check, id = self.account.buy(count, activities, action, expiration_mode)
+        return check

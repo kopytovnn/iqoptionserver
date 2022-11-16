@@ -1,8 +1,11 @@
+from pyiqoptionapi import IQOption
+import datetime
 import time
-from iqoptionapi.stable_api import IQ_Option
-Iq=IQ_Option("aalex12345sky@gmail.com", "Voda12345")
-Iq.connect()#connect to iqoption
-asset="EURUSD"
-indicators = Iq.get_technical_indicators(asset)
-for i in indicators:
-    print(i)
+import logging
+logging.basicConfig(format='%(asctime)s %(message)s')
+
+api = IQOption("aalex12345sky@gmail.com", "Voda12345")
+
+api.connect()
+api.change_balance("REAL")
+print('Your current blance is: {:.5f}'.format(api.get_balance()))

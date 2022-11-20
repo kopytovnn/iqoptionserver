@@ -41,9 +41,9 @@ def get_balance():
     return str(iqoption_engine.get_balance())
 
 
-@app.route('/buy/<count>/<res>')
-def buy(count, res):
-    a = iqoption_engine.buy(int(count), action=res)
+@app.route('/buy/<count>/<res>/<expirations>/<ticker>')
+def buy(count, res, expirations, ticker):
+    a = iqoption_engine.buy(int(count), action=res, expiration_mode=expirations, activities=ticker)
     if a:
         return "True"
     return get_balance()

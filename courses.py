@@ -38,5 +38,6 @@ class IqOptionClass:
         return string + psar_values
 
     def buy(self, count, activities="EURUSD-OTC", action="call", expiration_mode=1):
-        check, id = self.account.buy(count, activities, action, expiration_mode)
+        print(count, activities, action, expiration_mode)
+        check, id = self.account.buy(count, str(activities) + "-OTC", action, int(expiration_mode))
         return check

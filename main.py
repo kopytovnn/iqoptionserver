@@ -32,7 +32,7 @@ def with_params(goal, candle_count, interval, params, code):
 
 
 @app.route('/get/<goal>/<candle_count>/<interval>/<params>/<code>')
-def send_tickers(goal, candle_count, interval, params, code):pass
+def send_tickers(goal, candle_count, interval, params, code): pass
 
 
 @app.route('/balance/')
@@ -41,9 +41,9 @@ def get_balance():
     return str(iqoption_engine.get_balance())
 
 
-@app.route('/buy/<count>')
-def buy(count):
-    a = iqoption_engine.buy(int(count))
+@app.route('/buy/<count>/<res>')
+def buy(count, res):
+    a = iqoption_engine.buy(int(count), action=res)
     if a:
         return "True"
     return get_balance()

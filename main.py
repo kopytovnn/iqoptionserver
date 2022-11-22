@@ -45,8 +45,14 @@ def get_balance():
 def buy(count, res, expirations, ticker):
     a = iqoption_engine.buy(int(count), action=res, expiration_mode=expirations, activities=ticker)
     if a:
-        return "True"
+        print(a)
+        return str(a[1])
     return get_balance()
+
+
+@app.route('/chekwin/<deal_id>')
+def check_win(deal_id):
+    return iqoption_engine.check_win(deal_id)
 
 
 if __name__ == "__main__":

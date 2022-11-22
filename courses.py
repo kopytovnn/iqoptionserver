@@ -25,7 +25,7 @@ class IqOptionClass:
         return self.account.get_balance()
 
     def get_candles(self, goal='EURUSD', candle_count=30, interval='60', params={'psarStep': '0.02', 'psarMaxStep': '0.2'}):
-        d = self.account.get_candles(goal + "-OTC", int(interval), int(candle_count), time.time())
+        d = self.account.get_candles(goal + "", int(interval), int(candle_count), time.time())
         main_list = []
         string = ''
         for i in d:
@@ -39,5 +39,12 @@ class IqOptionClass:
 
     def buy(self, count, activities="EURUSD-OTC", action="call", expiration_mode=1):
         print(count, activities, action, expiration_mode)
-        check, id = self.account.buy(count, str(activities) + "-OTC", action, int(expiration_mode))
-        return check
+        print(activities)
+        check, id = self.account.buy(count, str(activities) + "", action, float(expiration_mode.replace(',', '.')))
+        return check, id
+
+    def check_win(self, deal_id):
+        res = self.account.check_win_v3(int(deal_id))
+        if int(res) >= 0:
+            return 'True'
+        return 'False'

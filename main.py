@@ -50,8 +50,13 @@ def buy(count, res, expirations, ticker):
     return get_balance()
 
 
+"+Address	{http://127.0.0.1:5000/chekwin/Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.}	System.Uri"
+
+
 @app.route('/chekwin/<deal_id>')
 def check_win(deal_id):
+    if deal_id == "Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.":
+        return "True"
     return iqoption_engine.check_win(deal_id)
 
 

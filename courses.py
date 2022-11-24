@@ -44,6 +44,7 @@ class IqOptionClass:
         return check, id
 
     def check_win(self, deal_id):
+        print(deal_id)
         res = self.account.check_win_v3(int(deal_id))
         if int(res) >= 0:
             return 'True'

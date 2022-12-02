@@ -24,6 +24,9 @@ class IqOptionClass:
     def get_balance(self):
         return self.account.get_balance()
 
+    def set_balance(self, balance_type):
+        self.account.change_balance(balance_type)
+
     def get_candles(self, goal='EURUSD', candle_count=30, interval='60', params={'psarStep': '0.02', 'psarMaxStep': '0.2'}):
         d = self.account.get_candles(goal + "", int(interval), int(candle_count), time.time())
         main_list = []

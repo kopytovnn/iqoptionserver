@@ -1,15 +1,15 @@
-# "aalex12345sky@gmail.com Voda12345"
-from pyiqoptionapi import IQOption
 import time
+from iqoptionapi.stable_api import IQ_Option
+import inspect
 
-account = IQOption("alexandrpheonix@gmail.com", "Samsung1991uk")
-account.connect()  # connect to iqoption
-# a = account.buy(100, "EURUSD", "put", 1.15656)
-# print(a)
-# b = account.check_win(10064676619)
-# print(b)
-check, id = account.buy(0.1, "EURUSD", "call", 0.1)
-start_time = time.time()
-print("start check win please wait")
-print(account.check_win_v3(id))
-print("--- %s seconds ---" % (time.time() - start_time))
+Iq = IQ_Option("alexandrpheonix@gmail.com", "Samsung1991uk")
+Iq.connect()  # connect to iqoption
+asset = "GBPUSD"
+
+print(inspect.getfullargspec(Iq ))
+
+indicators = Iq.get_technical_indicators(asset)
+
+for i in indicators:
+    if i['name'] == 'Stochastic %K (14, 3, 3)':
+        print(i)

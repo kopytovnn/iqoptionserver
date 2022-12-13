@@ -38,7 +38,7 @@ def send_tickers(goal, candle_count, interval, params, code): pass
 @app.route('/balance/')
 def get_balance():
     # print(iqoption_engine.get_balance())
-    return str(iqoption_engine.get_balance())
+    return str(iqoption_engine.get_balance()).replace('.', ',')
 
 
 @app.route('/s_b/<b>')

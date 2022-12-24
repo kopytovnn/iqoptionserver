@@ -51,4 +51,6 @@ class IqOptionClass:
         res = self.account.check_win_v3(int(deal_id))
         if int(res) >= 0:
             return 'True'
-        return 'False'
+        if int(res) < 0:
+            return 'False'
+        return 'Timeout'

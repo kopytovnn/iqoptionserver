@@ -52,7 +52,8 @@ def buy(count, res, expirations, ticker):
     if a:
         print(a)
         return str(a[1])
-    return get_balance()
+
+    return "problems with buying"
 
 
 "+Address	{http://127.0.0.1:5000/chekwin/Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.}	System.Uri"

@@ -66,5 +66,13 @@ def check_win(deal_id):
     return iqoption_engine.check_win(deal_id)
 
 
+@app.route('/wincount/<deal_id>')
+def wincount(deal_id):
+    print("___wincount___")
+    if deal_id == "Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.":
+        return "Timeout"
+    return str(iqoption_engine.win_count(deal_id))
+
+
 if __name__ == "__main__":
     app.run(port=5000)

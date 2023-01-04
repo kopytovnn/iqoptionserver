@@ -63,7 +63,11 @@ def buy(count, res, expirations, ticker):
 def check_win(deal_id):
     if deal_id == "Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.":
         return "Timeout"
-    return iqoption_engine.check_win(deal_id)
+    try:
+        return iqoption_engine.check_win(deal_id)
+    except TimeoutError:
+        print("TimeoutError")
+        return "Timeout"
 
 
 @app.route('/wincount/<deal_id>')

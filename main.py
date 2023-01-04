@@ -75,7 +75,7 @@ def wincount(deal_id):
     print("___wincount___")
     if deal_id == "Timeout response ID Buy. Verify in IQ Option App or Site if the order was executed.":
         return "Timeout"
-    return str(iqoption_engine.win_count(deal_id))
+    return "{:.2f}".format(float(str(iqoption_engine.win_count(deal_id))))
 
 
 if __name__ == "__main__":
